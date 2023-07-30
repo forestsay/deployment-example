@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    sidecar.jaegertracing.io/inject: 'true'
+  labels:
+    app: infra-deployment-example
+  name: infra-deployment-example
+  namespace: infra-deployment-example
+spec:
+  selector:
+    matchLabels:
+      name: infra-deployment-example
+  template:
+    metadata:
+      labels:
+        app: infra-deployment-example
+        branch: endymx
+        version: ${BUILD_NUMBER}-${CI_COMMIT_ID}
+        name: infra-deployment-example
+        dream-app: infra-deployment-example
+        dream-unit: infra-deployment-example
+    spec:
+      imagePullSecrets:
+        -   name: regcred
+      containers:
+        -   image: ${IMAGE}
+            imagePullPolicy: IfNotPresent
+            name: infra-deployment-example
+            envFrom:
+              -   configMapRef:
+                    name: env-config
+      terminationGracePeriodSeconds: 30

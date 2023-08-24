@@ -5,10 +5,10 @@ metadata:
   namespace: infra-deployment-example
 spec:
   ports:
-    -   name: http
-        port: 8080
-        protocol: TCP
-        targetPort: 8080
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
   selector:
     name: infra-deployment-example
     branch: dev

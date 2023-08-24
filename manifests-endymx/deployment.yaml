@@ -22,12 +22,12 @@ spec:
         dream-unit: infra-deployment-example
     spec:
       imagePullSecrets:
-        -   name: regcred
+        - name: regcred
       containers:
-        -   image: ${IMAGE}
-            imagePullPolicy: IfNotPresent
-            name: infra-deployment-example
-            envFrom:
-              -   configMapRef:
-                    name: env-config
+        - image: ${IMAGE}
+          imagePullPolicy: IfNotPresent
+          name: infra-deployment-example
+          envFrom:
+            - configMapRef:
+                name: env-config
       terminationGracePeriodSeconds: 30
